@@ -6,15 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bee Hive Beach Resort</title>
+    <meta name="description" content="" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="">
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <meta name="twitter:card" content="">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
 
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <!-- BOOTSTRAP CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -26,17 +39,29 @@
     <!-- FANCYBOX CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
 
+    <!-- SWIPER CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
     <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
 <body>
+    <!--[if IE]><div style="width: 100%; position: fixed; z-index: 1000; bottom: 0; left: 0; background: lightgray;"><p>Outdated browser dectected. Please use a modern browser for a better browsing experience.</p><div onClick="parentNode.remove()">Close [X]</div></div><![endif]-->
+
+    <!-- PRELOADER -->
+    <div id="fadein"></div>
+    <div id="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
     <!-- HEADER START -->
     <header class="masthead">
         <div class="header-top">
             <div class="container">
-                <div class="d-flex justify-content-lg-between justify-content-md-between">
+                <div class="d-flex justify-content-lg-between justify-content-md-between justify-content-sm-center">
 
                     <div class="contact-links">
                         <a href="tel:9876543210" class="contact-links__link"><i class="bi bi-telephone"></i>
@@ -73,6 +98,10 @@
                             <li><a href="#" class="nav-item__link">services</a></li>
                             <li><a href="#" class="nav-item__link">contact</a></li>
                         </ul>
+
+                        <button class="meu-trigger" role="button" id="menuTrigger">
+                            <i class="bi bi-list"></i>
+                        </button>
                     </nav>
                 </div>
             </div>
@@ -100,8 +129,12 @@
             </div>
         </div>
 
-        <div class="room-booking-form">
+        <div class="room-booking-form" id="room-booking-form">
             <div class="room-booking-form__header">
+                <button class="room-booking-form-close" id="room-booking-form-close">
+                    <i class="bi bi-x"></i>
+                </button>
+
                 <h2>Room Booking Enquiry Form</h2>
                 <p><strong>Note:</strong> Please provide accurate information for the best possible experience. We will
                     respond to you as
@@ -121,10 +154,14 @@
 
                 <div class="d-flex gap-3">
                     <div class="input-group">
-                        <input type="date" placeholder="enter your email address" class="form-control" required />
+                        <input class="form-control" placeholder="arrival date" data-val="true"
+                            data-val-required="Mandatory field" onblur="if(this.value==''){this.type='text'}"
+                            onfocus="(this.type='date')" type="text">
                     </div>
                     <div class="input-group">
-                        <input type="date" placeholder="enter your email address" class="form-control" />
+                        <input class="form-control" data-val="true" placeholder="departure date"
+                            data-val-required="Mandatory field" onblur="if(this.value==''){this.type='text'}"
+                            onfocus="(this.type='date')" type="text">
                     </div>
                 </div>
                 <div class="input-group">
@@ -149,7 +186,7 @@
     <section class="about-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="images-block">
                         <div class="images-block__box">
                             <img src="images/pillow.png" alt="Pillow Icon" class="img-fluid" />
@@ -170,10 +207,10 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-6 col-md-12">
                     <div class="text-block">
                         <h2 class="section-subtitle">about us</h2>
-                        <h3 class="section-title">Escape to Paradise at Bee Hive Beach Resort</h3>
+                        <h3 class="section-title">Escape to Paradise at <br>Bee Hive Beach Resort</h3>
                         <p>Welcome to Bee Hive Beach Resort, where luxury meets nature. Nestled in the heart of the West
                             Bengal, our resort offers the perfect blend of serenity and adventure. With a wide range of
                             rooms and amenities, we cater to all of your needs, whether you're looking to relax or
@@ -194,7 +231,7 @@
     <section class="our-room-section">
         <div class="container">
             <div class="section-title-block text-center">
-                <h2 class="section-subtitle">about us</h2>
+                <h2 class="section-subtitle">our rooms</h2>
                 <h3 class="section-title">Escape to Paradise at <br /> Bee Hive Beach Resort</h3>
             </div>
         </div>
@@ -308,9 +345,77 @@
             <div class="video-poster">
                 <h2>watch our luxarious hotel</h2>
                 <h3 class="section-title">Take a Tour of <br /> Bee Hive Beach Resort</h3>
-                <a data-fancybox="video-gallery" href="https://www.youtube.com/watch?v=z2X2HaTvkl8" role="button" class="play-btn">
+                <a data-fancybox="video-gallery" href="https://www.youtube.com/watch?v=z2X2HaTvkl8" role="button"
+                    class="play-btn">
                     <i class="bi bi-play-fill"></i>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR SERVICES SECTION START -->
+    <section class="our-services-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="service__img-block">
+                        <img src="images/service-img.jpg" alt="services image" class="img-fluid" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="service__text-block">
+                        <h2 class="section-subtitle">our services</h2>
+                        <h3 class="section-title">What We Offer</h3>
+                        <p>At Bee Hive Beach Resort, we pride ourselves on our exceptional service. Our friendly and
+                            attentive staff are dedicated to ensuring that your stay with us is nothing short of
+                            perfect. We offer a wide range of on-site facilities, including a swimming pool, fitness
+                            center, and spa. Our guests can also indulge in delicious dining options at our on-site
+                            restaurant, which serves a variety of international and local cuisines.
+                        </p>
+                    </div>
+                    <div class="service__icons-block">
+                        <div class="d-grid">
+                            <div class="icon-block">
+                                <img src="images/wifi-outline.png" alt="wifi">
+                                <span>wifi</span>
+                            </div>
+                            <div class="icon-block">
+                                <img src="images/chef.png" alt="wifi">
+                                <span>restaurant</span>
+                            </div>
+                            <div class="icon-block">
+                                <img src="images/swimming-pool.png" alt="wifi">
+                                <span>swimming pool</span>
+                            </div>
+                            <div class="icon-block">
+                                <img src="images/dumbbell.png" alt="wifi">
+                                <span>gym & spa</span>
+                            </div>
+                            <div class="icon-block">
+                                <img src="images/ac.png" alt="wifi">
+                                <span>air condition</span>
+                            </div>
+                            <div class="icon-block">
+                                <img src="images/help.png" alt="wifi">
+                                <span>help & service</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION SECTION -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="title-block">
+                <h2 class="section-title">Escape to Paradise at <br>
+                    Bee Hive Beach Resort</h2>
+                <p>For those looking to explore the great outdoors, Bee Hive Resort is the perfect base. From hiking and
+                    biking to water sports and wildlife safaris, there's something for everyone to enjoy. Our concierge
+                    team will be happy to help you plan your adventure.</p>
+                <a href="#" class="primary-btn">contact us</a>
             </div>
         </div>
     </section>
@@ -318,15 +423,287 @@
 
 
 
+    <!-- TESTIMONIALS SECTION START -->
+    <section class="testimonial-section">
+        <div class="container">
+            <div class="title-block">
+                <h2 class="section-subtitle">testimonials</h2>
+                <h3 class="section-title">What People Say About <br>
+                    Bee Hive Beach Resort </h3>
+            </div>
+
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="slide-block">
+                            <p>"I had an amazing stay at Bee Hive Resort. The rooms were spacious and clean, and the
+                                views were breathtaking. The staff were incredibly friendly and helpful, and the on-site
+                                facilities were top-notch. I highly recommend this resort to anyone looking for a
+                                relaxing getaway."</p>
+                            <div class="author-block d-flex">
+                                <img src="images/author-avatar1.png" alt="">
+                                <div class="author-meta">
+                                    <h4>Akash Gupta</h4>
+                                    <h5>- kolkata</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-block">
+                            <p>"Bee Hive Resort exceeded all of my expectations. The service was outstanding, and the
+                                rooms were beautifully decorated. I was able to completely unwind and relax during my
+                                stay. I also enjoyed exploring the surrounding area and taking part in the outdoor
+                                activities offered by the resort."</p>
+                            <div class="author-block d-flex">
+                                <img src="images/author-avatar2.png" alt="">
+                                <div class="author-meta">
+                                    <h4>Maitri Chaterjee</h4>
+                                    <h5>- kolkata</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-block">
+                            <p>"I recently stayed at Bee Hive Resort for a business conference and was extremely
+                                impressed by the facilities and service. The conference room was well-equipped and the
+                                staff were very accommodating. I was also able to enjoy the beautiful surroundings and
+                                amenities during my free time.</p>
+                            <div class="author-block d-flex">
+                                <img src="images/author-avatar3.png" alt="">
+                                <div class="author-meta">
+                                    <h4>Sayan Banik</h4>
+                                    <h5>- tripura</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION START -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="contact-section__left-block">
+                        <div class="title-block">
+                            <h2 class="section-subtitle">connect with us</h2>
+                            <h3 class="section-title">Let's Create <br /> Memories Together!</h3>
+                        </div>
+                        <div class="form-block">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="mb-4">
+                                            <label for="firstName" class="form-label">first name</label>
+                                            <input type="text" placeholder="enter your first name" class="form-control"
+                                                id="firstName" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="mb-4">
+                                            <label for="lastName" class="form-label">last name</label>
+                                            <input type="text" placeholder="enter your last name" class="form-control"
+                                                id="lastName" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="mb-4">
+                                            <label for="emailAddress" class="form-label">email address</label>
+                                            <input type="email" placeholder="enter your email address"
+                                                class="form-control" id="emailAddress" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="mb-4">
+                                            <label for="phoneNumber" class="form-label">phone number</label>
+                                            <input type="tel" placeholder="enter your phone number" class="form-control"
+                                                id="phoneNumber" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="mb-4">
+                                            <label for="formSubject" class="form-label">subject</label>
+                                            <input type="text" placeholder="how can we help you?" class="form-control"
+                                                id="formSubject" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="mb-4">
+                                            <label for="messageHere" class="form-label">message</label>
+                                            <textarea placeholder="write your message here" class="form-control"
+                                                id="messageHere"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="mb-4">
+                                            <button type="submit" class="primary-btn">
+                                                send your message <i class="bi bi-send"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div> <!-- /.contact-section__left-block -->
+                </div>
+
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="contact-section__right-block">
+                        <div class="title-block">
+                            <h2 class="section-subtitle">find us</h2>
+                            <h3 class="section-title">We're Always <br /> Here for You!</h3>
+                        </div>
+
+                        <div class="map-block">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.936959152203!2d88.65510221533386!3d22.84182172879022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8b05cbac8922b%3A0x2a278e14b31c7af1!2sStation%20Rd%2C%20Habra%2C%20West%20Bengal%20743263!5e0!3m2!1sen!2sin!4v1676054324448!5m2!1sen!2sin"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+
+                        <div class="contact-links">
+                            <ul>
+                                <li><i class="bi bi-envelope-paper-fill"> </i><a href="#">support@beehive.com</a></li>
+                                <li><i class="bi bi-telephone-fill"></i> <a href="#">(+91) 9876-543-210</a></li>
+                                <li><i class="bi bi-geo-alt-fill"></i> <a href="#">West Bengal, India</a></li>
+                            </ul>   
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
+    <!-- FOOTER START -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <div class="footer-block">
+                        <div class="footer-logo">
+                            <a href="#">
+                                <img src="images/footer-logo.png" alt="Beehive logo" class="img-fluid" />
+                            </a>
+                        </div>
+                        <div class="footer-description">
+                            <p>At Bee Hive Beach Resort, we pride ourselves on our exceptional service. Our friendly and
+                                attentive staff are dedicated to ensuring that your stay with us is nothing short of
+                                perfect. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-8 col-sm-12">
+                    <div class="footer-block">
+                        <h3>services</h3>
+                        <ul class="services-list">
+                            <li><a href="#">Premium Cottage Duplex</a></li>
+                            <li><a href="#">Super Deluxe Cottage Duplex</a></li>
+                            <li><a href="#">Deluxe Cottage Duplex</a></li>
+                            <li><a href="#">Free Wifi</a></li>
+                            <li><a href="#">Gym</a></li>
+                            <li><a href="#">Spa</a></li>
+                            <li><a href="#">Pool Bar</a></li>
+                            <li><a href="#">Banquet</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-sm-12">
+                    <div class="footer-block">
+                        <h3>quick links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Rooms</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <div class="footer-block">
+                        <h3>newsletter</h3>
+                        <div class="newsletter-block">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="email" placeholder="Enter Email Address" class="form-control"
+                                        required />
+                                    <input type="image" alt="send" src="images/send.svg" class="primary-btn">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright-section">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <p>&copy; Copyright 2023. All Rights Reserved by <span>Bee Hive Beach Resort.</span></p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <p><a href="#">terms and condition</a> | <a href="#">privacy policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-layout" id="mobile-menu-layout">
+        <div class="mobile-menu__inner">
+            <div class="mobile-menu__logo">
+                <a href="#">
+                    <img src="images/footer-logo.png" alt="Logo" class="img-fluid" />
+                </a>
+            </div>
+            <ul class="mobile-menu__list">
+                <li><a href="#">home</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">rooms</a></li>
+                <li><a href="#">services</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
 
+            <div class="mobile-menu__social-links">
+                <span>follow us -</span>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-whatsapp"></i></a>
+            </div>
 
+            <div class="mobile-menu__close" id="mobile-menu__close">
+                <button class="close" role="button">
+                    Close Menu <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="back-to-top" type="button">
+        <i class="bi bi-arrow-bar-up"></i>
+    </button>
 
     <!-- FIXED BOOKING ENQUIRY FORM -->
-    <button class="primary-btn btn-sm booking-enquiry-btn">Booking Enquiry</button>
+    <button class="primary-btn btn-sm booking-enquiry-btn" id="room-booking-form-trigger">Booking Enquiry</button>
+
+    <!-- JQUERY CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- BOOTSTRAP JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -335,7 +712,13 @@
 
     <!-- FANCYBOX JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-        
+
+    <!-- SWIPER JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="js/app.js"></script>
+
 </body>
 
 </html>
