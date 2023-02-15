@@ -113,3 +113,6 @@ roomBookingFormClose.addEventListener( 'click', () =>{
 roomBookingFormTrigger.addEventListener( 'click', () =>{
     roomBookingForm.classList.add( 'room-booking-form--open' );
 })
+
+//AOS
+AOS.init();
